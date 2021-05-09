@@ -26,13 +26,13 @@ namespace ConsoleApp19
         [Benchmark]
         public void CopyOne()
         {
-            List<People> lstCopy = DeepCopyFactory<People>.DeepCopyList(lstSource);
+            List<People> lstCopy = lstSource.DeepCopy();//DeepCopyFactory<People>.DeepCopyList(lstSource);
         }
 
         [Benchmark]
         public void CopyTwo()
         {
-            List<People> lstCopy2 = lstSource.DeepCopy();
+            List<People> lstCopy2 = lstSource.DeepCopy2();
         }
     }
 }

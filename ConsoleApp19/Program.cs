@@ -1,13 +1,5 @@
-﻿using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Running;
+﻿using BenchmarkDotNet.Running;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Runtime.Remoting.Proxies;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace ConsoleApp19
 {
@@ -15,7 +7,7 @@ namespace ConsoleApp19
     {
         static void Main(string[] args)
         {
-            // 对比
+            // 对比 https://blog.csdn.net/u013986317/article/details/112984388
             var summary = BenchmarkRunner.Run<TestClass>();
             Console.ReadLine();   
         }

@@ -13,7 +13,6 @@ namespace ConsoleApp19
     {
         /// <summary>
         /// 深拷贝
-        /// 注意：必须标识为可序列化[Serializable]
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
@@ -31,6 +30,38 @@ namespace ConsoleApp19
                 string jsonString = JsonConvert.SerializeObject(obj);
                 T value = JsonConvert.DeserializeObject<T>(jsonString);
                 return value;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// 【简单对象/集合的拷贝，可使用更高效的Utilities.DeepCopyHelper中提供的方法】
+        /// 深拷贝
+        /// 注意：必须标识为可序列化[Serializable]
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static T DeepCopy2<T>(this T obj)
+            where T : class
+        {
+            try
+            {
+                if (obj == null)
+                {
+                    return null;
+                }
+
+                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    binaryFormatter.Serialize(stream, obj);
+                    stream.Position = 0;
+                    return (T)binaryFormatter.Deserialize(stream);
+                }
             }
             catch
             {
